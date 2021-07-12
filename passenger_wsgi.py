@@ -1,9 +1,9 @@
+import imp
+import os
 import sys
 
-sys.path.insert(0, "/home/usercpanel/apps/django-blog")
 
-import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'blog.settings'
+sys.path.insert(0, os.path.dirname(__file__))
 
-from django.core.wsgi import get_wsgi_application
-application = get_wsgi_application()
+wsgi = imp.load_source('wsgi', 'blog/wsgi.py')
+application = wsgi.application
